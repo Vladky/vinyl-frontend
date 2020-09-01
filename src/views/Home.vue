@@ -1,18 +1,47 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
-  </div>
+  <v-container fluid class="">
+    <v-form @submit.prevent="submit">
+      <vinyl-search-box :value.sync="searchText" />
+    </v-form>
+    <div>
+      <vinyl-result-list v-bind="{ items }" ref="result" />
+    </div>
+  </v-container>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+import { Vue, Component, Prop } from 'vue-property-decorator'
+import { VinylSearchBox, VinylResultList } from '@/components'
+import axios from 'axios'
+
+Component.registerHooks(['beforeRouteEnter', 'beforeRouteUpdate'])
 
 @Component({
-  components: {
-    HelloWorld
+  components: { VinylSearchBox, VinylResultList },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      vm.searchText = to.query.search
+      vm.fetchDataAsync(to.query)
+    })
+  },
+  beforeRouteUpdate(to, from, next) {
+    this.searchText = to.query.search
+    this.fetchDataAsync(to.query)
+    next()
   }
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  searchText = ''
+  items: any[] = []
+  submit() {
+    this.$router.push({ path: this.$route.path, query: { search: this.searchText } })
+  }
+  async fetchDataAsync(params) {
+    ;(this.$refs.result as any).loading = true
+    const { data } = await axios.get('http://localhost:3000/mdm/vinyl', { params })
+    this.items = data
+    console.log('Home -> fetchDataAsync -> this.items', this.items)
+    ;(this.$refs.result as any).loading = false
+  }
+}
 </script>

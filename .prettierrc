@@ -1,0 +1,9 @@
+{
+  "singleQuote": true,
+  "printWidth": 110,
+  "trailingComma": "none",
+  "semi": false,
+  "proseWrap": "always",
+  "tabWidth": 2,
+  "htmlWhitespaceSensitivity": "css"
+}
