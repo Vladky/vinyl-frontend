@@ -1,7 +1,11 @@
 <template>
   <v-container fluid class="">
     <v-form @submit.prevent="submit">
-      <vinyl-search-box :value.sync="searchText" />
+      <v-row class="justify-center" no-gutters>
+        <v-col cols="12" md="6" xl="4">
+          <vinyl-search-box :value.sync="searchText" />
+        </v-col>
+      </v-row>
     </v-form>
     <div>
       <vinyl-result-list v-bind="{ items }" ref="result" />
@@ -38,7 +42,7 @@ export default class Home extends Vue {
   }
   async fetchDataAsync(params) {
     ;(this.$refs.result as any).loading = true
-    const { data } = await axios.get('http://localhost:3000/mdm/vinyl', { params })
+    const { data } = await axios.get('http://localhost:8080/mdm/vinyl', { params })
     this.items = data
     console.log('Home -> fetchDataAsync -> this.items', this.items)
     ;(this.$refs.result as any).loading = false
