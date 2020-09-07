@@ -1,6 +1,5 @@
 <template>
   <div class="d-flex flex-column fill-height justify-center pa-3">
-    <!-- <v-container fill-height class="ma-0"> -->
     <div class="flex-grow-0">
       <v-form @submit.prevent="submit">
         <v-row class="justify-center" no-gutters>
@@ -10,11 +9,10 @@
         </v-row>
       </v-form>
     </div>
-    <div :class="{ 'flex-grow-1': !!items.length || loading || noResult }">
+    <div :class="['list-transition', { 'flex-grow-1': !!items.length || loading || noResult }]">
       <vinyl-result-list v-bind="{ items, loading, noData, noResult }" ref="result" />
     </div>
   </div>
-  <!-- </v-container> -->
 </template>
 
 <script lang="ts">
@@ -65,3 +63,9 @@ export default class Home extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.list-transition {
+  transition: all 300ms ease-in-out;
+}
+</style>

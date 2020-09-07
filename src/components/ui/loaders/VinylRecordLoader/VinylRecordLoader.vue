@@ -1,5 +1,10 @@
 <template>
-  <vue-lottie v-bind="{ options }" :height="128" :width="128" />
+  <vue-lottie
+    v-bind="{ options }"
+    :height="128"
+    :width="128"
+    style="filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.5))"
+  />
 </template>
 
 <script lang="ts">

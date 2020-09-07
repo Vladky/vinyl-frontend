@@ -7,7 +7,7 @@
   >
     <v-img class="white--text align-end " :src="model.imageSrc">
       <v-card-title class="justify-end">
-        <v-chip color="secondary">{{ model.price }} Р.</v-chip>
+        <v-chip class="text--secondary" color="white">{{ model.price }} Р.</v-chip>
       </v-card-title>
     </v-img>
     <v-card-title>

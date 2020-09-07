@@ -1,5 +1,5 @@
 <template>
-  <v-text-field placeholder="Поиск винила..." v-model="model" solo rounded append-icon="mdi-album" />
+  <v-text-field placeholder="Поиск винила" v-model="model" solo rounded append-icon="mdi-magnify" />
 </template>
 
 <script lang="ts">
