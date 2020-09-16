@@ -19,14 +19,18 @@
       </v-tooltip>
     </v-card-title>
     <v-card-subtitle>
-      {{ model.album.artist.name }}
+      <div class="text-crop text-crop--ellipsis">
+        {{ model.album.artist.name }}
+      </div>
     </v-card-subtitle>
     <v-card-actions class="justify-end">
       <v-btn color="primary" class="px-3" small dense outlined rounded :href="model.link" target="_blank">
-        <v-icon small class="pr-2">
+        <v-icon small>
           mdi-cart
         </v-icon>
-        В магазин
+        <span class="pl-2 ">
+          В магазин
+        </span>
       </v-btn>
     </v-card-actions>
   </v-card>

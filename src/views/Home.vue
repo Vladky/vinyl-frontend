@@ -14,7 +14,17 @@
                 </v-btn>
               </template>
             </v-text-field>
-            <v-btn v-if="defaultState" rounded type="submit">Поиск пластинок</v-btn>
+            <v-btn
+              v-if="defaultState"
+              dense
+              rounded
+              depressed
+              type="submit"
+              class="text--secondary text-body-2 font-weight-medium"
+              style="text-transform: none"
+            >
+              Найти пластинки
+            </v-btn>
           </v-col>
         </v-row>
       </v-form>
