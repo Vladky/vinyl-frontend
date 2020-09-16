@@ -1,7 +1,7 @@
 <template>
   <v-container fill-height>
     <v-row v-if="!loading && !noResult">
-      <v-col v-for="(item, index) in items" :key="index" cols="12" sm="6" md="4" lg="2" xl="1">
+      <v-col v-for="(item, index) in items" :key="index" cols="12" sm="6" md="4" lg="2">
         <vinyl-card :value="item" />
       </v-col>
     </v-row>
