@@ -19,26 +19,27 @@
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import { VinylSearchBox, VinylResultList } from '@/components'
 import { VinylService } from '@/services'
+import { Vinyl } from '@/models'
 
 Component.registerHooks(['beforeRouteEnter', 'beforeRouteUpdate'])
 
-@Component({
+@Component<Home>({
   components: { VinylSearchBox, VinylResultList },
   beforeRouteEnter(to, from, next) {
     next(vm => {
-      vm.searchText = to.query.search
+      vm.searchText = to.query.search as string
       vm.fetchDataAsync(to.query)
     })
   },
   beforeRouteUpdate(to, from, next) {
-    this.searchText = to.query.search
+    this.searchText = to.query.search as string
     this.fetchDataAsync(to.query)
     next()
   }
 })
 export default class Home extends Vue {
   searchText = ''
-  items: any[] = []
+  items: Vinyl[] = []
   submit() {
     this.$router.push({ path: this.$route.path, query: { search: this.searchText } })
   }
@@ -48,7 +49,8 @@ export default class Home extends Vue {
     return !(this.items.length && this.searchText)
   }
   noResult = false
-  async fetchDataAsync(params) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async fetchDataAsync(params: any) {
     if (params.search) {
       this.loading = true
       this.noResult = false
